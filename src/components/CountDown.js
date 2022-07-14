@@ -1,20 +1,31 @@
 import React from "react";
 
-export class CountDown extends React.Component{
+export class CountDown extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { count: 100 };
+  }
 
-    constructor(props){
-        super(props)
-    }
+  componentDidMount() {
+    this.update();
+  }
 
+  update() {
+   
+    setInterval(() => {
+        let currentCount = this.state.count;
+      this.setState({ count: currentCount - 1 });
+    }, 1000);
+  }
+//TODO : WHY DOES THE COUNTER GOES NUTS AFTER SOMETIME
 
-    render(){
-        return(
-            <div>
-                <center>
-                    <h4 className="time-text">100</h4>
-                </center>
-            </div>
-        )
-    }
-
+  render() {
+    return (
+      <div>
+        <center>
+          <h4 className="time-text">{this.state.count}</h4>
+        </center>
+      </div>
+    );
+  }
 }
